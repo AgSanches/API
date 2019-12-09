@@ -1,16 +1,13 @@
 module Api
   module V1
     class BrandsController < ApplicationController
+
       def index
-        @brands = Brand.all.with_attached_image
-        render json: @brands.map { |brand|
-          brand.as_json.merge({ image: url_for(brand.image) })
-        }
+        render json: Brand.all
       end
 
       def show
-        brand = Brand.find(params[:id])
-        render json: {status: 'SUCCESS', message:'Loaded brand', data:brand, image: url_for(brand.image)},status: :ok
+        render json: Brand.find(params[:id])
       end
 
       def create

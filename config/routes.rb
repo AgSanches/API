@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   namespace 'api' do
     namespace 'v1' do
       resources :brands
-      resources :product
+      resources :products
+      resource :sizes, only: [:create, :update, :destroy]
+
     end
   end
 

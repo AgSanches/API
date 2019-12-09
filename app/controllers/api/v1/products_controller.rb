@@ -1,21 +1,13 @@
 module Api
   module V1
-    class ProductController < ApplicationController
+    class ProductsController < ApplicationController
+
       def index
-        products = Product.all
-        render json: products.map { |product|
-          product.as_json.merge(
-              {
-                  slider_photo: url_for(product.slider_photo),
-                  slider_photo: url_for(product.slider_photo)
-              }
-          )
-        }
+        render json: Product.all
       end
 
       def show
-        product = Product.find(params[:id])
-        render json: {status: 'SUCCESS', message:'Loaded product', data:product, image: url_for(product.image)},status: :ok
+        render json: Product.find(params[:id])
       end
 
       def create
@@ -46,7 +38,7 @@ module Api
       private
 
       def product_params
-        params.permit(:name, :image)
+        params.permit(:name, :price, :discount, :isSale, :description, :brand_id, :product_presentation, :slider_photo, product_photos: [] )
       end
     end
   end

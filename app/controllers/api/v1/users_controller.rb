@@ -35,10 +35,25 @@ module Api
         end
       end
 
-      private
+      def login
+        user = User.find_by_email(params[:email])
 
+        if user.password == params[:password]
+          render json: {status: "SUCCESS", message: "User login", data:user}, status: :ok
+        else
+          render json: {status: 'ERROR', message:'user not valid'},status: :bad_request
+        end
+
+      end
+
+      private
       def user_params
-        params.permit(:login, :email, :password, :surnames, :street, :postalcode, :country, :city, :passport, :phone, :type)
+        params.permit(:login, :email, :password, :surnames, :street, :postalcode, :country, :city, :passport, :phone, :type_user)
+      end
+
+      private
+      def login_params
+        params.permit(:email, :password)
       end
     end
   end

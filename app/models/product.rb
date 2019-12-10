@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :brand
   has_many :sizes
+  has_many :opinions
   has_one_attached :product_presentation
   has_one_attached :slider_photo
   has_many_attached :product_photos

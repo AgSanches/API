@@ -4,10 +4,12 @@ Rails.application.routes.draw do
 
   namespace 'api' do
     namespace 'v1' do
+      post '/users/login', to: 'users#login'
       resources :brands
       resources :products
+      resources :users
+      resources :opinions
       resource :sizes, only: [:create, :update, :destroy]
-
     end
   end
 

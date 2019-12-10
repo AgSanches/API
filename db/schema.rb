@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_04_213627) do
+ActiveRecord::Schema.define(version: 2019_12_10_104250) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -37,6 +37,17 @@ ActiveRecord::Schema.define(version: 2019_12_04_213627) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "opinions", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.integer "user_id", null: false
+    t.integer "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_opinions_on_product_id"
+    t.index ["user_id"], name: "index_opinions_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -73,12 +84,14 @@ ActiveRecord::Schema.define(version: 2019_12_04_213627) do
     t.string "city"
     t.string "passport"
     t.string "phone"
-    t.integer "type"
+    t.integer "type_user"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "opinions", "products"
+  add_foreign_key "opinions", "users"
   add_foreign_key "products", "brands"
   add_foreign_key "sizes", "products"
 end

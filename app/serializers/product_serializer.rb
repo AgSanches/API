@@ -22,21 +22,22 @@ class ProductSerializer < ActiveModel::Serializer
   end
 
   def getSizes
-    object.sizes.map do |size|
-      ProductSerializer.new(size)
+    self.object.sizes.map do |size|
+      size.number
     end
   end
 
-  def getSizes
-    self.object.sizes.map do |size|
-      size.number
+  def getOpinions
+    opinions = []
+    self.object.opinions.map do |opinion|
+      opinions << { id: opinion.id, title: opinion.title, body: opinion.body, usuario: User.find(opinion.user_id).login}
     end
   end
 
 
   attributes :id, :name, :price, :discount, :isSale,
              :description, :getBrand, :getProductPresentationPhotoPath,
-             :getSliderPhotoPath, :getProductPhotoPath, :getSizes
+             :getSliderPhotoPath, :getProductPhotoPath, :getSizes, :getOpinions
 
 
 end

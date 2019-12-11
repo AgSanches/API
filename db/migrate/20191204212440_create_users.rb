@@ -12,7 +12,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :city
       t.string :passport
       t.string :phone
-      t.integer :type_user
+      t.integer :type_user, default: 2
 
       t.timestamps
     end

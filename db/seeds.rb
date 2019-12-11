@@ -34,5 +34,9 @@ Size.create!(
         { number: 43, quantity: 19, product_id: 1}
 )
 
+User.create!(
+        {email: "admin@gmail.com", password: "admin", type_user: 2, login:"admin"}
+)
+
 
 

@@ -53,8 +53,9 @@ ActiveRecord::Schema.define(version: 2019_12_10_104250) do
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.decimal "price"
-    t.decimal "discount"
-    t.boolean "isSale"
+    t.decimal "discount", default: "0.0"
+    t.boolean "isSale", default: false
+    t.boolean "isDestacado", default: false
     t.text "description"
     t.integer "brand_id", null: false
     t.date "create"
@@ -84,7 +85,7 @@ ActiveRecord::Schema.define(version: 2019_12_10_104250) do
     t.string "city"
     t.string "passport"
     t.string "phone"
-    t.integer "type_user"
+    t.integer "type_user", default: 2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

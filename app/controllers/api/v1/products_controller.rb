@@ -38,7 +38,9 @@ module Api
       private
 
       def product_params
-        params.permit(:name, :price, :discount, :isSale, :description, :brand_id, :product_presentation, :slider_photo, product_photos: [] )
+        params.permit(:name, :price, :discount, :isSale,
+                      :description, :brand_id, :product_presentation,
+                      :slider_photo, :isDestacado ,product_photos: [] )
       end
     end
   end

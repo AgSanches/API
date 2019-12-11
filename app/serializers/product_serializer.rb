@@ -34,10 +34,8 @@ class ProductSerializer < ActiveModel::Serializer
     end
   end
 
-
   attributes :id, :name, :price, :discount, :isSale,
              :description, :getBrand, :getProductPresentationPhotoPath,
-             :getSliderPhotoPath, :getProductPhotoPath, :getSizes, :getOpinions
-
-
+             :getSliderPhotoPath, :getProductPhotoPath, :getSizes,
+             :getOpinions, :isDestacado
 end

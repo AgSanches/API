@@ -1,0 +1,49 @@
+<!--Admin Text -->
+<section class="container-fluid bg-danger text-center p-2">
+  <h1>Gestión de tallas - <%= @product.name %></h1>
+</section>
+<!--Admin Text -->
+
+<!-- breadcrumb -->
+<nav aria-label="breadcrumb" class="mb-2 bg-principal-color">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to "Panel de Administrador", admin_index_path %>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Gestión de tallas</li>
+    </ol>
+  </nav>
+</nav>
+<!-- breadcrumb -->
+
+<!-- Edit/Create Brand -->
+<section class="container my-3 bg-dark p-3">
+  <header class="text-center mb-2 border border-bottom p-3">
+    <h2>Gestión de las Tallas</h2>
+  </header>
+
+  <%= link_to "Añadir Talla", newSize_path(@product.id) ,class:"btn btn-primary"%>
+  <%= link_to "Volver Atrás", admin_index_path ,class:"btn btn-warning"%>
+
+  <table class="table table-responsive-sm table-light mt-3">
+    <thead>
+    <th>Talla</th>
+    <th>Cantidad</th>
+    <th>Editar</th>
+    <th>Eliminar</th>
+    </thead>
+
+    <tbody>
+    <%  @sizes.each do |size| %>
+      <tr>
+        <td><%= size.number %></td>
+        <td><%= size.quantity %></td>
+        <td><%= link_to 'Editar', editSize_path(size.id) %></td>
+        <td><%= link_to 'Eliminar', { :action => :destroySize, :id => size.id }, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</section>
+<!-- Edit/Create Brand -->

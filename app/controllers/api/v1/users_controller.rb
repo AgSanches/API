@@ -2,6 +2,8 @@ module Api
   module V1
     class UsersController < ApplicationController
 
+      require 'digest'
+
       def index
         render json: User.all
       end
@@ -40,7 +42,8 @@ module Api
 
       def login
         user = User.find_by_email(params[:email])
-        if user.password == params[:password]
+        digestPasword =  Digest::SHA2.hexdigest params[:password]
+        if user.password == digestPasword
           render json: {status: "SUCCESS", message: "User login", data:user}, status: :ok
         else
           render json: {status: 'ERROR', message:'user not valid'},status: :bad_request
@@ -59,11 +62,6 @@ module Api
       private
       def user_params
         params.permit(:login, :email, :password, :name, :surnames, :street, :postalcode, :country, :city, :passport, :phone)
-      end
-
-      private
-      def login_params
-        params.permit(:email, :password)
       end
     end
   end

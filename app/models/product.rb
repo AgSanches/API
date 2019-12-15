@@ -8,7 +8,6 @@ class Product < ApplicationRecord
   validates :name, presence: true
   validates :price, presence: true
   validates :discount, presence: true
-  validates :isSale, presence: true
   validates :description, presence: true
   validates :brand_id, presence: true
 end

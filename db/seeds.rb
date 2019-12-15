@@ -37,6 +37,9 @@ Size.create!(
 User.create!(
         {email: "admin@gmail.com", password: "admin", type_user: 2, login:"admin"}
 )
+User.create!(
+        {email: "noadmin@gmail.com", password: "noadmin", type_user: 1, login:"noadmin"}
+)
 
 
 

@@ -1,0 +1,100 @@
+<section class="container-fluid my-0 py-2 text-center bg-danger">
+  <h1>Modificación de un producto</h1>
+</section>
+
+<nav aria-label="breadcrumb" class="mb-2 bg-principal-color">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to "Panel Administrador",  admin_index_path %>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Modificar producto</li>
+    </ol>
+  </nav>
+</nav>
+
+<section class="container-fluid">
+  <h2>Datos de la marca</h2>
+
+  <%= form_for @product, url: api_v1_product_path, method: :PATCH do |f| %>
+
+    <div class="form-group">
+      <label for="productName" class="col-12 col-form-label">Nombre</label>
+      <div class="col-12">
+        <%= f.text_field :name, class:'form-control'%>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="productName" class="col-12 col-form-label">Marca</label>
+      <div class="col-12">
+        <% brands = Brand.all.map { |brand| [brand.name, brand.id]} %>
+        <%= f.select :brand_id, options_for_select(brands), prompt: "Seleccione uno", class: "form-control"  %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="productName" class="col-12 col-form-label">Precio</label>
+      <div class="col-12">
+        <%= f.number_field :price, class:'form-control'%>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="productName" class="col-12 col-form-label">Descuento en Rebajas</label>
+      <div class="col-12">
+        <%= f.number_field :discount, class:'form-control'%>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="productName" class="col-12 col-form-label">Descripción</label>
+      <div class="col-12">
+        <%= f.text_area :description, class:'form-control', size:'24x6'%>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-12 col-md-6">
+        <%= f.check_box :isSale%>
+        <label for="productName">¿Está en rebajas?</label>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <%= f.check_box :isDestacado%>
+        <label for="productName">¿Es destacado?</label>
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="productName" class="col-12 col-form-label">Foto Presentación</label>
+      <div class="col-12">
+        <%= f.file_field :product_presentation, class:'form-control-file'%>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="productName" class="col-12 col-form-label">Foto Slider</label>
+      <div class="col-12">
+        <%= f.file_field :slider_photo, class:'form-control-file'%>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="productName" class="col-12 col-form-label">Fotos del Producto</label>
+      <div class="col-12">
+        <%= f.file_field :product_photos, multiple: true , class:'form-control-file'%>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-offset-2 col-10">
+        <%= f.submit "Modificar producto", class:"btn btn-success"%>
+        <%= link_to "Volver atrás", :back ,class:"btn btn-primary"%>
+      </div>
+    </div>
+
+  <% end %>
+
+</section>

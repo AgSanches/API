@@ -14,7 +14,7 @@ module Api
         product = Product.new(product_params)
 
         if product.save
-          render json: {status: 'SUCCESS', message:'Saved product', data:product},status: :ok
+          redirect_to admin_index_path
         else
           render json: {status: 'ERROR', message:'product not saved', data:product.errors},status: :unprocessable_entity
         end
@@ -29,16 +29,15 @@ module Api
       def update
         product = Product.find(params[:id])
         if product.update_attributes(product_params)
-          render json: {status: 'SUCCESS', message:'Updated product', data:product},status: :ok
+          redirect_to admin_index_path
         else
           render json: {status: 'ERROR', message:'product not updated', data:product.errors},status: :unprocessable_entity
         end
       end
 
       private
-
       def product_params
-        params.permit(:name, :price, :discount, :isSale,
+        params.require(:product).permit(:name, :price, :discount, :isSale,
                       :description, :brand_id, :product_presentation,
                       :slider_photo, :isDestacado ,product_photos: [] )
       end

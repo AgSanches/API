@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= csrf_meta_tags %>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <%= stylesheet_link_tag 'index', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <title>Web DAW I <%= @title_page ? "- " + @title_page: "" %></title>
+</head>
+<body>
+<div class="page-wrapper">
+  <%= render 'partials/header' %>
+
+  <%= yield %>
+</div>
+<%= render 'partials/footer' %>
+
+</body>
+</html>

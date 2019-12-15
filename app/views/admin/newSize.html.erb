@@ -1,0 +1,45 @@
+<section class="container-fluid my-0 py-2 text-center bg-danger">
+  <h1>Creación de una Talla</h1>
+</section>
+
+<nav aria-label="breadcrumb" class="mb-2 bg-principal-color">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to "Panel Administrador",  admin_index_path %>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Crear Talla</li>
+    </ol>
+  </nav>
+</nav>
+
+<section class="container-fluid">
+  <h2>Datos de la talla</h2>
+
+  <%= form_for :size, url: api_v1_sizes_path, hmtl: { class: "border p-3" } do |f| %>
+
+    <%= f.hidden_field :product_id, value: @productId %>
+
+    <div class="form-group">
+      <label for="productName" class="col-12 col-form-label">Talla</label>
+      <div class="col-12">
+        <%= f.number_field :number, class:'form-control'%>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="productName" class="col-12 col-form-label">Cantidad</label>
+      <div class="col-12">
+        <%= f.number_field :quantity, class:'form-control'%>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-offset-2 col-10">
+        <%= f.submit "Crear talla", class:"btn btn-success"%>
+        <%= link_to "Volver atrás", :back ,class:"btn btn-primary"%>
+      </div>
+    </div>
+
+  <% end %>
+</section>

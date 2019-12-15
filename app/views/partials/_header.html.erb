@@ -1,0 +1,30 @@
+<!-- Start Header-->
+<header class="sticky-top bg-dark">
+  <nav class="navbar navbar-expand-md navbar-dark">
+    <a href="index.html" class="navbar-brand">Logo</a>
+
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarContent">
+      <p class="navbar-toggler-icon"></p>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav">
+
+        <% if @login %>
+
+            <li class="nav-item custom-color">
+              <%= link_to("Inicio", admin_index_path, {class: 'nav-link'}) %>
+            </li>
+
+            <li class="nav-item custom-color">
+              <%= link_to("Cerrar Sesión", admin_logout_path, {class: 'nav-link'}) %>
+            </li>
+
+        <% end %>
+
+      </ul>
+    </div>
+
+  </nav>
+</header>
+<!-- End Header-->

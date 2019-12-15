@@ -78,9 +78,6 @@ class AdminController < ActionController::Base
     size.destroy
   end
 
-  def destroyProduct
-  end
-
   private
     def authenticate
       if session[:email] == nil

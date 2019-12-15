@@ -2,6 +2,8 @@ module Api
   module V1
     class ProductsController < ApplicationController
 
+      before_action :authenticate, :except => [:create, :destroy, :update]
+
       def index
         render json: Product.all
       end
@@ -20,18 +22,19 @@ module Api
         end
       end
 
-      def destroy
-        product = Product.find(params[:id])
-        product.destroy
-        render json: {status: 'SUCCESS', message:'Deleted product', data:product},status: :ok
-      end
-
       def update
         product = Product.find(params[:id])
         if product.update_attributes(product_params)
           redirect_to admin_index_path
         else
           render json: {status: 'ERROR', message:'product not updated', data:product.errors},status: :unprocessable_entity
+        end
+      end
+
+      private
+      def authenticate
+        if session[:token] == nil
+          redirect_to admin_index_path
         end
       end
 

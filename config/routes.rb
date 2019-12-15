@@ -33,7 +33,7 @@ Rails.application.routes.draw do
       post '/users/:id', to: 'users#update'
       post '/admin', to: 'users#admin'
       resources :brands, only: [:create, :show, :index, :update]
-      resources :products
+      resources :products, only: [:create, :show, :index, :update]
       resources :users, only: [:create, :destroy, :show, :index]
       resources :opinions
       resource :sizes, only: [:create, :update, :destroy]

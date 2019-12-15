@@ -19,21 +19,6 @@ brands.image.attach(io: File.open("#{Rails.root}/public/images/jordan-brand.png"
 brands = Brand.create!({ "name":"Asics" })
 brands.image.attach(io: File.open("#{Rails.root}/public/images/jordan-brand.png"), filename: "jordan-brand.png")
 
-product = Product.create!(
-    { name: "Prueba2" ,price: 100 ,discount: 70 ,isSale: true ,description: "sgkjhdsfkjhsfkjdshfkjdshfkjdshfkjhsdfkj" ,brand_id: 3}
-)
-
-product.product_presentation.attach(io: File.open("#{Rails.root}/public/images/jordan-brand.png"), filename: "jordan-brand.png")
-product.slider_photo.attach(io: File.open("#{Rails.root}/public/images/jordan-brand.png"), filename: "jordan-brand.png")
-product.product_photos.attach(io: File.open("#{Rails.root}/public/images/jordan-brand.png"), filename: "jordan-brand.png")
-product.product_photos.attach(io: File.open("#{Rails.root}/public/images/jordan-brand.png"), filename: "jordan-brand.png")
-product.product_photos.attach(io: File.open("#{Rails.root}/public/images/jordan-brand.png"), filename: "jordan-brand.png")
-
-
-Size.create!(
-        { number: 43, quantity: 19, product_id: 1}
-)
-
 User.create!(
         {email: "admin@gmail.com", password: "admin", type_user: 2, login:"admin"}
 )

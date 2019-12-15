@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :opinions
   before_create -> {self.token = generate_token }
   before_create -> {self.password = Digest::SHA256.new << self.password }
+  before_save -> {self.password = Digest::SHA256.new << self.password }
 
   private def generate_token
     loop do

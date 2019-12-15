@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root :to => "admin#index"
   # Login
   get 'admin/index'
   get 'admin/login'

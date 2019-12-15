@@ -2,7 +2,7 @@ module Api
   module V1
     class ProductsController < ApplicationController
 
-      before_action :authenticate, :except => [:create, :destroy, :update]
+      before_action :authenticate, :except => [:index, :show]
 
       def index
         render json: Product.all
@@ -34,7 +34,7 @@ module Api
       private
       def authenticate
         if session[:token] == nil
-          redirect_to admin_index_path
+          render json: {status: 'ERROR', message: "No se ha enviando ningún token de autenticación"}, :status => :forbidden
         end
       end
 

@@ -2,7 +2,19 @@ module Api
   module V1
     class ProductsController < ApplicationController
 
-      before_action :authenticate, :except => [:index, :show, :trending, :recommends]
+      before_action :authenticate, :except => [:index, :show, :trending, :recommends, :pageProducts, :getLastProducts, :getSales]
+
+      def getLastProducts
+        render json: Product.all().order('created_at ASC').limit(params[:limit])
+      end
+
+      def pageProducts
+        render json: Product.where('isSale != 1').order('created_at ASC').limit(params[:limit])
+      end
+
+      def getSales
+        render json: Product.where('isSale = 1').order('created_at ASC').limit(params[:limit])
+      end
 
       def trending
         render json: Product.where('isDestacado == 1').limit('12')

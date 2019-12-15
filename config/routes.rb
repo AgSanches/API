@@ -30,9 +30,9 @@ Rails.application.routes.draw do
 
   namespace 'api' do
     namespace 'v1' do
-      get '/products/recommends', to:'products#recommends'
-      get '/products/trending', to:'products#trending'
-      get '/brands/getIndexBrands', to:'brands#getIndexBrands'
+      get '/recommends', to:'products#recommends'
+      get '/trending', to:'products#trending'
+      get '/getIndexBrands', to:'brands#getIndexBrands'
       post '/login', to: 'users#login'
       post '/users/:id', to: 'users#update'
       post '/admin', to: 'users#admin'

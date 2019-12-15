@@ -2,10 +2,14 @@ module Api
   module V1
     class BrandsController < ApplicationController
 
-      before_action :authenticate, except: [:index, :show]
+      before_action :authenticate, except: [:index, :show, :getIndexBrands]
 
       def index
         render json: Brand.all
+      end
+
+      def getIndexBrands
+        render json: Brand.all.order('updated_at ASC').limit('2')
       end
 
       def show

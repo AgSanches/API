@@ -2,7 +2,15 @@ module Api
   module V1
     class ProductsController < ApplicationController
 
-      before_action :authenticate, :except => [:index, :show]
+      before_action :authenticate, :except => [:index, :show, :trending, :recommends]
+
+      def trending
+        render json: Product.where('isDestacado == 1').limit('12')
+      end
+
+      def recommends
+        render json: Product.all.order('updated_at ASC').limit('4')
+      end
 
       def index
         render json: Product.all

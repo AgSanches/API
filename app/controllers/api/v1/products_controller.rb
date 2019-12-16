@@ -9,15 +9,15 @@ module Api
       end
 
       def pageProducts
-        render json: Product.where('isSale != 1').order('created_at ASC').limit(params[:limit])
+        render json: Product.where('products.isSale != 1').order('created_at ASC').limit(params[:limit])
       end
 
       def getSales
-        render json: Product.where('isSale = 1').order('created_at ASC').limit(params[:limit])
+        render json: Product.where('products.isSale = 1').order('created_at ASC').limit(params[:limit])
       end
 
       def trending
-        render json: Product.where('isDestacado == 1').limit('12')
+        render json: Product.where('products.isDestacado == 1').limit('12')
       end
 
       def recommends

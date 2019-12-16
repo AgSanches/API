@@ -7,6 +7,7 @@ class AdminController < ActionController::Base
     @users = User.all
     @brands = Brand.all
     @panels = IndexPanelInfo.all
+    @orders = Order.all.limit('12')
     render layout: 'application'
   end
 

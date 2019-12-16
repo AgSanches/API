@@ -1,0 +1,36 @@
+<!-- Edit/Create Brand -->
+<section class="container my-3 bg-dark p-3">
+  <header class="text-center mb-2 border border-bottom p-3">
+    <h2>Gestión del panel principal</h2>
+  </header>
+
+  <%= link_to "Añadir Elemento", admin_newPanelInfo_path ,class:"btn btn-primary"%>
+
+  <table class="table table-responsive-sm table-light mt-3">
+    <thead>
+    <th>Nombre</th>
+    <th>Texto</th>
+    <th>Tipo</th>
+    <th>Imagen</th>
+    <th>Editar</th>
+    <th>Eliminar</th>
+    </thead>
+    <tbody>
+    <%  @panels.each do |panel| %>
+      <tr>
+        <td><%= panel.title %></td>
+        <td><%= panel.text %></td>
+        <td><%= panel.type_panel == 1?'Principal':'Secundario' %></td>
+        <td><%= image_tag panel.image %></td>
+        <td>
+          <%= link_to "Editar", editPanelInfo_path(panel.id) %>
+        </td>
+        <td>
+          <%= link_to 'Eliminar', { :action => :deletePanelInfo, :id => panel.id }, :method => :delete, :data => { :confirm => '¿Estás seguro?' } %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</section>
+<!-- Edit/Create Brand -->

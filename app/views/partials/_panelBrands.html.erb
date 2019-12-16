@@ -1,0 +1,31 @@
+<!-- Edit/Create Brand -->
+<section class="container my-3 bg-dark p-3">
+  <header class="text-center mb-2 border border-bottom p-3">
+    <h2>Gestión de las marcas</h2>
+  </header>
+
+  <%= link_to "Añadir Marca", admin_newBrand_path ,class:"btn btn-primary"%>
+
+  <table class="table table-responsive-sm table-light mt-3">
+    <thead>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Image</th>
+    <th>Editar</th>
+    </thead>
+
+    <tbody>
+    <%  @brands.each do |brand| %>
+      <tr>
+        <td><%= brand.id %></td>
+        <td><%= brand.name %></td>
+        <td><%= image_tag brand.image %></td>
+        <td>
+          <%= link_to "Editar", editBrand_path(brand.id) %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</section>
+<!-- Edit/Create Brand -->

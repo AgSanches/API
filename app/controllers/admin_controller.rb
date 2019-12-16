@@ -6,6 +6,7 @@ class AdminController < ActionController::Base
     @products = Product.all
     @users = User.all
     @brands = Brand.all
+    @panels = IndexPanelInfo.all
     render layout: 'application'
   end
 
@@ -76,6 +77,24 @@ class AdminController < ActionController::Base
   def destroySize
     size = Size.find(params[:id])
     size.destroy
+  end
+
+  # IndexPanelInfo
+  # ######################
+
+  def newPanelInfo
+    @panel = IndexPanelInfo.new
+    render layout: 'application'
+  end
+
+  def editPanelInfo
+    @panel = IndexPanelInfo.find(params[:id])
+    render layout: 'application'
+  end
+
+  def deletePanelInfo
+    panel = IndexPanelInfo.find(params[:id])
+    panel.destroy
   end
 
   private

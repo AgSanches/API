@@ -1,0 +1,60 @@
+<section class="container my-3 bg-dark p-3">
+  <header class="text-center mb-2 border border-bottom p-3">
+    <h2>Gestión del Stock</h2>
+  </header>
+
+<%= link_to "Añadir Producto", admin_newProduct_path ,class:"btn btn-primary"%>
+
+<table  class="table table-responsive-sm table-light mt-3">
+  <thead>
+  <th>ID</th>
+  <th>Nombre</th>
+  <th>Imagen</th>
+  <th>Marca</th>
+  <th>Precio</th>
+  <th>Descuento</th>
+  <th>Producto Destacado</th>
+  <th>Producto Rebajado</th>
+  <th>Gestionar tallas</th>
+  <th>Opciones</th>
+  </thead>
+  <tbody>
+
+  <%  @products.each do |product| %>
+    <tr>
+      <td><%= product.id %></td>
+      <td><%= product.name %></td>
+      <td><%= image_tag product.product_presentation %></td>
+      <td><%= Brand.find(product.brand_id).name %></td>
+      <td><%= product.price %></td>
+      <td><%= product.discount %></td>
+
+      <td>
+        <% if product.isDestacado == true  %>
+          <i class="material-icons">done_outline</i>
+        <% else %>
+          <i class="material-icons">close</i>
+        <% end %>
+      </td>
+
+      <td>
+        <% if product.isSale == true  %>
+          <i class="material-icons">done_outline</i>
+        <% else %>
+          <i class="material-icons">close</i>
+        <% end %>
+      </td>
+
+      <td>
+        <%= link_to "Gestionar", manageSize_path(product.id) %>
+      </td>
+
+      <td>
+        <%= link_to "Editar", editProduct_path(product.id) %>
+      </td>
+
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</section>

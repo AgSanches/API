@@ -19,12 +19,11 @@ Rails.application.routes.draw do
   get 'admin/manageSize/:id', to:'admin#manageSize', as:'manageSize'
   get 'admin/destroyProduct'
   ########################
-
-  get 'admin/newUser'
-  get 'admin/editUser'
-  get 'admin/editUser'
-  get 'admin/destroyProduct'
-  get 'admin/index'
+  # Panel Info
+  get 'admin/newPanelInfo'
+  get 'admin/editPanelInfo/:id', to:'admin#editPanelInfo', as:'editPanelInfo'
+  delete 'admin/deletePanelInfo/:id', to:'admin#deletePanelInfo', as:'deletePanelInfo'
+  ########################
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 
@@ -36,6 +35,7 @@ Rails.application.routes.draw do
       get '/pageProducts/:limit', to:'products#pageProducts'
       get '/getLastProducts/:limit', to:'products#getLastProducts'
       get '/getSales/:limit', to:'products#getSales'
+      get '/getPanelByType/:type_panel', to: 'index_panel_infos#getPanelByType'
       post '/login', to: 'users#login'
       post '/users/:id', to: 'users#update'
       post '/admin', to: 'users#admin'
@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       resources :products, only: [:create, :show, :index, :update]
       resources :users, only: [:create, :destroy, :show, :index]
       resources :opinions
+      resources :index_panel_infos
       resource :sizes, only: [:create, :update, :destroy]
     end
   end

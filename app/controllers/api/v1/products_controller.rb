@@ -2,10 +2,14 @@ module Api
   module V1
     class ProductsController < ApplicationController
 
-      before_action :authenticate, :except => [:index, :show, :trending, :recommends, :pageProducts, :getLastProducts, :getSales]
+      before_action :authenticate, :except => [:index, :show, :trending, :recommends, :pageProducts, :getLastProducts, :getSales, :getSearchProducts]
 
       def getLastProducts
         render json: Product.all().order('created_at ASC').limit(params[:limit])
+      end
+
+      def getSearchProducts
+          render json: Product.where('name LIKE ?', "%#{params[:search]}%")
       end
 
       def pageProducts

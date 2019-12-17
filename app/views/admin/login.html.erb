@@ -1,8 +1,12 @@
-<%= form_for :user, url: admin_checkLogin_path do |f|%>
-  <%= f.label :email, 'Correo electrónico:' %>
-  <%= f.text_field :email %> <br>
-  <%= f.label :password, 'Contraseña:' %>
-  <%= f.password_field :password %> <br>
+<div class="container mt-3 d-block w-auto">
+  <h1 class="border p-3">Iniciar sesión</h1>
 
-  <%= f.submit %> <br>
-<% end %>
+  <%= form_for :user, url: admin_checkLogin_path do |f|%>
+    <%= f.label :email, 'Correo electrónico:' %>
+    <%= f.text_field :email, class: 'form-control'%> <br>
+    <%= f.label :password, 'Contraseña:' %>
+    <%= f.password_field :password, class: "form-control"%> <br>
+
+    <%= f.submit "Entrar", class: 'btn btn-success'%> <br>
+  <% end %>
+</div>
